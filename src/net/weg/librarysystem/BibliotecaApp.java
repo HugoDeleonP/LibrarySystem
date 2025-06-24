@@ -12,9 +12,9 @@ public class BibliotecaApp {
 		do {
 			keyUser = atendente.mainMenu();
 			biblioteca.gerenciarBiblioteca(keyUser, atendente);
-		} while(keyUser != 4);
+		} while(keyUser != 0);
 		
 		
-	}
+	} 
 
 }

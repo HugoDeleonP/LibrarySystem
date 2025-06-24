@@ -25,6 +25,37 @@ public class Biblioteca {
 		return LocalDate.parse(dataString, formatter);
 	}
 	
+	public void gerenciarBiblioteca(int keyUser, Atendente atendente) {
+		
+		
+		switch (keyUser) {
+		case 0 ->{
+			atendente.encerramento();
+		}
+		case 1 -> {
+			adicionarLivro(atendente);
+		}
+		case 2 ->{
+			listarLivro(atendente, livros);
+		}
+		case 3 ->{
+			removerLivro(atendente, livros);
+		}
+		case 4 ->{
+			pesquisarLivro(atendente, livros);
+		}
+		case 5 ->{
+			editarLivro(atendente, livros);
+		}
+		case 6 ->{
+			contagemLivros(atendente, livros);
+		}
+		default ->{
+			atendente.numeroInvalido();
+		}
+		}
+	}
+	
 	public Livro formerLivro(Atendente atendente) {
 		
 		String titulo = atendente.writeTitulo();
@@ -71,23 +102,83 @@ public class Biblioteca {
 		}
 	}
 	
-	public void gerenciarBiblioteca(int keyUser, Atendente atendente) {
-		switch (keyUser) {
-		case 1 -> {
-			adicionarLivro(atendente);
+	public void pesquisarLivro(Atendente atendente, ArrayList<Livro> livros) {
+		
+		String tituloLivro = atendente.writeTitulo();
+		
+		for(Livro livro: livros) {
+			
+			if(livro.getTitulo().equalsIgnoreCase(tituloLivro)) {
+				atendente.tituloEncontrado(livro);
+			}
+			else {
+				atendente.tituloNaoEncontrado();
+			}
 		}
-		case 2 ->{
-			listarLivro(atendente, livros);
+	}
+	
+	public Livro pesquisarLivroIndex(Atendente atendente, ArrayList<Livro> livros, int indexDigitado) {
+		
+		
+		int index = 0;
+
+		for(Livro livro: livros) {
+			
+			if(livros.get(indexDigitado) != null) {
+				return livro;
+			}
+			
+			else {
+				atendente.listaVazia();
+			}
 		}
-		case 3 ->{
-			removerLivro(atendente, livros);
+		
+		return null;
+	}
+	
+	public void editarLivro(Atendente atendente, ArrayList<Livro> livros) {
+		Scanner input = new Scanner(System.in);
+		
+		listarLivro(atendente, livros);
+		int indexDigitado = atendente.writeIndex();
+				
+		Livro livroPesquisado = pesquisarLivroIndex(atendente, livros, indexDigitado);
+		
+		int keyUser = atendente.edicaoMenu(input);		
+		gerenciarEdicao(keyUser, atendente, livroPesquisado);
+	}
+	
+	public void gerenciarEdicao(int keyUser, Atendente atendente, Livro livro) {
+		switch(keyUser) {
+			case 0 ->{
+				atendente.cancelamento();
+			}
+			case 1 ->{
+				String tituloEditado = atendente.writeTitulo();
+				livro.setTitulo(tituloEditado);
+			}
+			case 2 ->{
+				String autorEditado = atendente.writeAutor();
+				livro.setAutor(autorEditado);
+			}
+			case 3 ->{
+				int anoPublicacaoEditado = atendente.writeAnoPublicacao();
+				livro.setAnoPublicacao(anoPublicacaoEditado);
+			}
+			case 4 ->{
+				String generoEditado = atendente.writeGenero();
+				livro.setGenero(generoEditado);
+			}
+			default ->{
+				atendente.numeroInvalido();
+			}
 		}
-		case 4 ->{
-			atendente.encerramento();
-		}
-		default ->{
-			atendente.numeroInvalido();
-		}
-		}
+	}
+	
+	public void contagemLivros(Atendente atendente, ArrayList<Livro> livros) {
+		
+		int quantidadeLivros = livros.size();
+		
+		atendente.quantidadeDeLivros(quantidadeLivros);
 	}
 }

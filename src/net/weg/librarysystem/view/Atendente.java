@@ -14,12 +14,16 @@ public class Atendente {
 	}
 	
 	public int mainMenu() {
-		System.out.println("-========Biblioteca-WEG=======-");
-		System.out.println("| 1- Cadastrar livro          |");
-		System.out.println("| 2- Listar livros            |");
-		System.out.println("| 3- Remover livros           |");
-		System.out.println("| 4- Sair                     |");
-		System.out.println("-=============================-");
+		System.out.println("-=================Biblioteca-WEG================-");
+		System.out.println("| 1- Cadastrar livro                            |");
+		System.out.println("| 2- Listar livros                              |");
+		System.out.println("| 3- Remover livros                             |");
+		System.out.println("| 4- Pesquisar por título                       |");
+		System.out.println("| 5- Editar                                     |");
+		System.out.println("| 6- Contagem de livros cadastrados             |");
+		System.out.println("|                                               |");
+		System.out.println("| 0- Sair                                       |");
+		System.out.println("-===============================================-");
 		
 		int keyUser = input.nextInt();
 		input.nextLine();
@@ -61,26 +65,67 @@ public class Atendente {
 		
 		System.out.println("Digite o índice: ");
 		int index = input.nextInt();
+		input.nextLine();
 		
 		return index;
 	}
 	
 	public void printLivro(Livro livro, int index) {
-		System.out.println("-============| "+ index + " |============-");
+		System.out.println("-=====================| "+ index + " |=====================-");
 		System.out.println("|Título: " + livro.getTitulo());
 		System.out.println("|Autor: " + livro.getAutor());
 		System.out.println("|Ano de publicação: " + livro.getAnoPublicacao());
 		System.out.println("|Gênero: " + livro.getGenero());
-
+		System.out.println("-===============================================-");
+	}
+	
+	public void tituloEncontrado(Livro livro) {
+		System.out.println("Título encontrado com sucesso!");
+		System.out.println("|Título: " + livro.getTitulo());
+		System.out.println("|Autor: " + livro.getAutor());
+		System.out.println("|Ano de publicação: " + livro.getAnoPublicacao());
+		System.out.println("|Gênero: " + livro.getGenero());
+	}
+	
+	public void tituloNaoEncontrado() {
+		System.out.println("Título não encontrado.");
+		System.out.println("Tente um título que corresponda a um livro registrado.");
 	}
 	
 	public void listaVazia(){
 		System.out.println("Não há livros registrados");
 	}
 	
+	public int edicaoMenu(Scanner input) {
+				
+		System.out.println("-===============================================-");
+		System.out.println("|Digite o que deseja editar:                    |");
+		System.out.println("|_______________________________________________|");
+		System.out.println("|1- Título                                      |");
+		System.out.println("|2- Autor                                       |");
+		System.out.println("|3- Ano de publicação                           |");
+		System.out.println("|4- Gênero                                      |");
+		System.out.println("|                                               |");
+		System.out.println("|0- Cancelar                                    |");
+		System.out.println("-===============================================-");
+		
+		int keyUser = input.nextInt();
+		
+		return keyUser;
+	}
+	
+	public void quantidadeDeLivros(int quantidadeLivros) {
+		System.out.println("-===============================================-");
+		System.out.printf("|Quantidade de livros: %d                        |\n", quantidadeLivros);
+		System.out.println("-===============================================-");
+	}
 	public void acimaLimite() {
 		System.out.println("O índice escolhido está acima do tamanho da lista.");
 		System.out.println("Escolha um outro que esteja condizente com a quantidade existente");
+	}
+	
+	public void cancelamento() {
+		System.out.println("Edição cancelada.");
 	}
 	
 	public void encerramento() {
