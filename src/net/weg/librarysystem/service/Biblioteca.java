@@ -25,7 +25,49 @@ public class Biblioteca {
 		return LocalDate.parse(dataString, formatter);
 	}
 	
-	public void gerenciarBiblioteca(int keyUser, Atendente atendente) {
+	public void escolhaCrud(int keyUser, Atendente atendente) {
+		
+		int escolhaUser;
+		
+		switch(keyUser) {
+		
+		case 0 ->{
+			atendente.encerramento();
+		}
+		
+		case 1 ->{
+			
+			escolhaUser = atendente.mainMenuPessoa();
+			gerenciarPessoa(keyUser, atendente);
+		}
+		
+		case 2 ->{
+			escolhaUser = atendente.mainMenuLivro();
+			gerenciarLivro(keyUser, atendente);
+		}
+		
+		default ->{
+			atendente.numeroInvalido();
+		}
+		}
+	}
+	
+	public void gerenciarPessoa(int keyUser, Atendente atendente) {
+		
+		switch(keyUser) {
+		
+		case 0 ->{
+			atendente.encerramento();
+		}
+		
+		default ->{
+			atendente.numeroInvalido();
+		}
+		
+		}
+	}
+	
+	public void gerenciarLivro(int keyUser, Atendente atendente) {
 		
 		
 		switch (keyUser) {

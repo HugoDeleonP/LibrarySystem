@@ -11,6 +11,7 @@ public class BibliotecaApp {
 		int keyUser;
 		do {
 			keyUser = atendente.escolhaCrud();
+			biblioteca.escolhaCrud(keyUser, atendente);
 		} while(keyUser != 0);
 		
 		
