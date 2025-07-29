@@ -13,7 +13,39 @@ public class Atendente {
 		input = new Scanner(System.in);
 	}
 	
-	public int mainMenu() {
+	public int escolhaCrud() {
+		System.out.println("-===============================================-");
+		System.out.println("|Digite o que deseja gerenciar:                 |");
+		System.out.println("|_______________________________________________|");
+		System.out.println("| 1- Pessoas                                    |");
+		System.out.println("| 2- Livros                                     |");
+		System.out.println("|                                               |");
+		System.out.println("| 0- Encerrar software                          |");
+		System.out.println("-===============================================-");
+		
+		int keyUser = input.nextInt();
+		input.nextLine();
+		
+		return keyUser;
+	}
+	
+	public int mainMenuPessoa() {
+		System.out.println("-=================Biblioteca-WEG================-");
+		System.out.println("| 1- Cadastrar pessoa                           |");
+		System.out.println("| 2- Listar pessoas                             |");
+		System.out.println("| 3- Remover pessoa                             |");
+		System.out.println("| 4- Pesquisar por nome                         |");
+		System.out.println("| 5- Editar                                     |");
+		System.out.println("|                                               |");
+		System.out.println("| 0- Sair                                       |");
+		System.out.println("-===============================================-");
+		
+		int keyUser = input.nextInt();
+		input.nextLine();
+		return keyUser;
+	}
+	
+	public int mainMenuLivro() {
 		System.out.println("-=================Biblioteca-WEG================-");
 		System.out.println("| 1- Cadastrar livro                            |");
 		System.out.println("| 2- Listar livros                              |");

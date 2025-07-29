@@ -10,8 +10,7 @@ public class BibliotecaApp {
 		Biblioteca biblioteca = new Biblioteca();
 		int keyUser;
 		do {
-			keyUser = atendente.mainMenu();
-			biblioteca.gerenciarBiblioteca(keyUser, atendente);
+			keyUser = atendente.escolhaCrud();
 		} while(keyUser != 0);
 		
 		
