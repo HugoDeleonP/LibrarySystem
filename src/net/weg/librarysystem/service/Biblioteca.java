@@ -36,7 +36,6 @@ public class Biblioteca {
 		}
 		
 		case 1 ->{
-			
 			escolhaUser = atendente.mainMenuPessoa();
 			gerenciarPessoa(keyUser, atendente);
 		}

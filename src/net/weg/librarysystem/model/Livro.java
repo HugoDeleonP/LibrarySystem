@@ -52,5 +52,14 @@ public class Livro {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	
+
+	@Override
+	public String toString() {
+		return	"-=================Biblioteca-WEG================-\n" +
+				"| Título: " + titulo + "\n" +
+				"| Autor: " + autor + "\n" +
+				"| Ano de publicação: " + anoPublicacao + "\n" +
+				"| Gênero: " + genero + "\n" +
+				"-===============================================-\n";
+	}
 }
