@@ -1,5 +1,4 @@
 package net.weg.librarysystem.service;
-import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,12 +36,12 @@ public class Biblioteca {
 		
 		case 1 ->{
 			escolhaUser = atendente.mainMenuPessoa();
-			gerenciarPessoa(keyUser, atendente);
+			gerenciarPessoa(escolhaUser, atendente);
 		}
 		
 		case 2 ->{
 			escolhaUser = atendente.mainMenuLivro();
-			gerenciarLivro(keyUser, atendente);
+			gerenciarLivro(escolhaUser, atendente);
 		}
 		
 		default ->{
@@ -77,19 +76,19 @@ public class Biblioteca {
 			adicionarLivro(atendente);
 		}
 		case 2 ->{
-			listarLivro(atendente, livros);
+			listarLivro(atendente);
 		}
 		case 3 ->{
-			removerLivro(atendente, livros);
+			removerLivro(atendente);
 		}
 		case 4 ->{
-			pesquisarLivro(atendente, livros);
+			pesquisarLivro(atendente);
 		}
 		case 5 ->{
-			editarLivro(atendente, livros);
+			editarLivro(atendente);
 		}
 		case 6 ->{
-			contagemLivros(atendente, livros);
+			contagemLivros(atendente);
 		}
 		default ->{
 			atendente.numeroInvalido();
@@ -116,7 +115,7 @@ public class Biblioteca {
 		
 	}
 	
-	public void listarLivro(Atendente atendente, ArrayList<Livro> livros) {
+	public void listarLivro(Atendente atendente) {
 	
 	if(livros.isEmpty()){
 		atendente.listaVazia();
@@ -131,7 +130,7 @@ public class Biblioteca {
 
 	}
 	
-	public void removerLivro(Atendente atendente, ArrayList<Livro> livros) {
+	public void removerLivro(Atendente atendente) {
 		int index = atendente.writeIndex();
 		try {
 			livros.remove(index);
@@ -143,7 +142,7 @@ public class Biblioteca {
 		}
 	}
 	
-	public void pesquisarLivro(Atendente atendente, ArrayList<Livro> livros) {
+	public void pesquisarLivro(Atendente atendente) {
 		
 		String tituloLivro = atendente.writeTitulo();
 		
@@ -158,7 +157,7 @@ public class Biblioteca {
 		}
 	}
 	
-	public Livro pesquisarLivroIndex(Atendente atendente, ArrayList<Livro> livros, int indexDigitado) {
+	public Livro pesquisarLivroIndex(Atendente atendente, int indexDigitado) {
 		
 		
 		int index = 0;
@@ -177,13 +176,13 @@ public class Biblioteca {
 		return null;
 	}
 	
-	public void editarLivro(Atendente atendente, ArrayList<Livro> livros) {
+	public void editarLivro(Atendente atendente) {
 		Scanner input = new Scanner(System.in);
 		
-		listarLivro(atendente, livros);
+		listarLivro(atendente);
 		int indexDigitado = atendente.writeIndex();
 				
-		Livro livroPesquisado = pesquisarLivroIndex(atendente, livros, indexDigitado);
+		Livro livroPesquisado = pesquisarLivroIndex(atendente, indexDigitado);
 		
 		int keyUser = atendente.edicaoMenu(input);		
 		gerenciarEdicao(keyUser, atendente, livroPesquisado);
@@ -216,7 +215,7 @@ public class Biblioteca {
 		}
 	}
 	
-	public void contagemLivros(Atendente atendente, ArrayList<Livro> livros) {
+	public void contagemLivros(Atendente atendente) {
 		
 		int quantidadeLivros = livros.size();
 		
